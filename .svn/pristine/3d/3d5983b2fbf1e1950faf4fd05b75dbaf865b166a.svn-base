@@ -1,0 +1,96 @@
+#!/usr/bin/env python
+
+import sys
+import logging
+from squid_dynamodb.providers.dynamodb import DynamoDbAuthInfoProvider
+from squid_dynamodb.providers.ec2 import Ec2AuthInfoProvider
+from urlparse import urlparse
+
+
+class Ec2DynamodbAclHelper(object):
+
+    def __init__(self):
+        logging.basicConfig(format='%(asctime)s %(levelname)s %(module)s: %(message)s', datefmt='%d.%m.%Y %H:%M:%S',level=logging.INFO)
+        self.logger = logging.getLogger(__name__)
+        self.proxy_config_table = DynamoDbAuthInfoProvider()
+        self.ec2_auth = Ec2AuthInfoProvider()
+
+    def is_valid_request(self, request_metadata):
+        if not request_metadata:
+            return False
+
+        try:
+            username = self.ec2_auth.get_stack_name_for_private_ip(request_metadata['source_ip'])
+            user_config = self.proxy_config_table.get_user_config(username)
+
+            if self.is_allowed_request(user_config.get('URLs'), request_metadata):
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            self.logger.error("Could not validate request: {0}".format(str(e)))
+            self.logger.exception(e)
+            return False
+
+    def is_allowed_request(self, url_acls, request_metadata):
+
+        assert url_acls is list, ""
+        assert request_metadata is dict, ""
+
+        for url_acl in url_acls:
+            # returns a 6-tuple like: (scheme, netloc, path, params, query, fragment)
+            exploded_url_acl = urlparse(url_acl)
+            # protocol match
+            if not exploded_url_acl[0] == request_metadata['dest_scheme']:
+                return False
+            # netloc match
+            #TODO: find out how squid fills the params and implement host:port combination handling
+            if not exploded_url_acl[1] == request_metadata['dest_host']:
+                return False
+            return True
+
+    # requires tag output format to be "%SRC %PROTO %DST %PORT"
+    def parse_request_metadata(self, line):
+        assert line, "Nothing parseable supplied, got blank newline!"
+        request_metadata = {}
+
+        item_list = line.split(" ")
+        assert(len(item_list) == 4), "Error parsing request-metadata from squid output, invalid format supplied!"
+
+        request_metadata['source_ip'] = item_list[0].strip()
+        request_metadata['dest_scheme'] = item_list[1].strip()
+        request_metadata['dest_host'] = item_list[2].strip()
+        request_metadata['dest_port'] = int(item_list[3].strip())
+        return request_metadata
+
+    def main_loop(self):
+        while True:
+            line = sys.stdin.readline()
+            line = line.strip()
+
+            request_metadata = self.parse_request_metadata(line)
+
+            if self.is_valid_request(request_metadata):
+                self.write_ok()
+            else:
+                self.write_error()
+
+    @staticmethod
+    def write_ok():
+        sys.stdout.write('OK\n')
+        sys.stdout.flush()
+
+    @staticmethod
+    def write_error():
+        sys.stdout.write('ERR\n')
+        sys.stdout.flush()
+
+    @staticmethod
+    def write_unknown():
+        sys.stdout.write('BH\n')
+        sys.stdout.flush()
+
+if __name__ == '__main__':
+    aclhelper = Ec2DynamodbAclHelper()
+    aclhelper.main_loop()

@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+from squid_dynamodb.auth_helper import AuthHelper
+
+if __name__ == "__main__":
+    authhelper = AuthHelper()
+    authhelper.main_loop()

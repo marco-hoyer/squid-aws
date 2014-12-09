@@ -1,0 +1,9 @@
+import unittest
+
+from dynamo_squid import proxy_config
+
+
+class ProxyConfigTests(unittest.TestCase):
+
+    def setUp(self):
+        self.proxyconfig = proxy_config.DynamoDbProxyConfig()

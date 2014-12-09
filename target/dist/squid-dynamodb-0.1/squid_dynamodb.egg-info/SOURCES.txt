@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+scripts/squid-dynamodb-auth.py
+squid_dynamodb/__init__.py
+squid_dynamodb/acl_helper.py
+squid_dynamodb/auth_helper.py
+squid_dynamodb.egg-info/PKG-INFO
+squid_dynamodb.egg-info/SOURCES.txt
+squid_dynamodb.egg-info/dependency_links.txt
+squid_dynamodb.egg-info/requires.txt
+squid_dynamodb.egg-info/top_level.txt
+squid_dynamodb.egg-info/zip-safe
+squid_dynamodb/providers/__init__.py
+squid_dynamodb/providers/dynamodb.py
+squid_dynamodb/providers/ec2.py

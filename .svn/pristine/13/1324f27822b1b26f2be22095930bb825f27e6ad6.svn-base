@@ -1,0 +1,9 @@
+import unittest
+
+from squid_dynamodb.providers import dynamodb
+
+
+class ProxyConfigTests(unittest.TestCase):
+
+    def setUp(self):
+        self.proxyconfig = dynamodb.DynamoDbAuthInfoProvider()

@@ -1,0 +1,61 @@
+running bdist_dumb
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/squid_dynamodb
+copying squid_dynamodb/__init__.py -> build/lib/squid_dynamodb
+copying squid_dynamodb/acl_helper.py -> build/lib/squid_dynamodb
+copying squid_dynamodb/auth_helper.py -> build/lib/squid_dynamodb
+creating build/lib/squid_dynamodb/providers
+copying squid_dynamodb/providers/__init__.py -> build/lib/squid_dynamodb/providers
+copying squid_dynamodb/providers/dynamodb.py -> build/lib/squid_dynamodb/providers
+copying squid_dynamodb/providers/ec2.py -> build/lib/squid_dynamodb/providers
+running build_scripts
+creating build/scripts-2.6
+copying and adjusting scripts/squid-dynamodb-auth.py -> build/scripts-2.6
+changing mode of build/scripts-2.6/squid-dynamodb-auth.py from 644 to 755
+installing to build/bdist.macosx-10.9-intel/dumb
+running install
+running install_lib
+creating build/bdist.macosx-10.9-intel
+creating build/bdist.macosx-10.9-intel/dumb
+creating build/bdist.macosx-10.9-intel/dumb/data
+creating build/bdist.macosx-10.9-intel/dumb/data/home
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb
+copying build/lib/squid_dynamodb/__init__.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb
+copying build/lib/squid_dynamodb/acl_helper.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb
+copying build/lib/squid_dynamodb/auth_helper.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers
+copying build/lib/squid_dynamodb/providers/__init__.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers
+copying build/lib/squid_dynamodb/providers/dynamodb.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers
+copying build/lib/squid_dynamodb/providers/ec2.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers
+byte-compiling build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/__init__.py to __init__.pyc
+byte-compiling build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/acl_helper.py to acl_helper.pyc
+byte-compiling build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/auth_helper.py to auth_helper.pyc
+byte-compiling build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers/__init__.py to __init__.pyc
+byte-compiling build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers/dynamodb.py to dynamodb.pyc
+byte-compiling build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb/providers/ec2.py to ec2.pyc
+running install_egg_info
+running egg_info
+writing requirements to squid_dynamodb.egg-info/requires.txt
+writing squid_dynamodb.egg-info/PKG-INFO
+writing top-level names to squid_dynamodb.egg-info/top_level.txt
+writing dependency_links to squid_dynamodb.egg-info/dependency_links.txt
+reading manifest file 'squid_dynamodb.egg-info/SOURCES.txt'
+writing manifest file 'squid_dynamodb.egg-info/SOURCES.txt'
+Copying squid_dynamodb.egg-info to build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/lib/python2.6/site-packages/squid_dynamodb-0.1-py2.6.egg-info
+running install_scripts
+creating build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/bin
+copying build/scripts-2.6/squid-dynamodb-auth.py -> build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/bin
+changing mode of build/bdist.macosx-10.9-intel/dumb/data/home/mhoyer/virtualenv_2.6/bin/squid-dynamodb-auth.py to 755
+tar -cf /data/home/mhoyer/PycharmProjects/squid-dynamodb/target/dist/squid-dynamodb-0.1/dist/squid-dynamodb-0.1.macosx-10.9-intel.tar .
+gzip -f9 /data/home/mhoyer/PycharmProjects/squid-dynamodb/target/dist/squid-dynamodb-0.1/dist/squid-dynamodb-0.1.macosx-10.9-intel.tar
+tar -cf /data/home/mhoyer/PycharmProjects/squid-dynamodb/target/dist/squid-dynamodb-0.1/dist/squid-dynamodb-0.1.macosx-10.9-intel.tar .
+gzip -f9 /data/home/mhoyer/PycharmProjects/squid-dynamodb/target/dist/squid-dynamodb-0.1/dist/squid-dynamodb-0.1.macosx-10.9-intel.tar
+removing 'build/bdist.macosx-10.9-intel/dumb' (and everything under it)

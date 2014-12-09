@@ -1,0 +1,45 @@
+import unittest2
+from mock import patch, Mock
+from squid_dynamodb import auth_helper
+
+
+class AuthHelperTests(unittest2.TestCase):
+
+    def setUp(self):
+        user_config_mock = Mock()
+        #TODO: use user_config_mock.get.ifcalledwith("Password").return_value to refine this
+        user_config_mock.get.return_value = "testpassword"
+
+        proxy_config_table_mock = Mock()
+        proxy_config_table_mock.get_user_config.return_value = user_config_mock
+
+        dynamodb_proxy_config_mock = Mock()
+        dynamodb_proxy_config_mock.return_value = proxy_config_table_mock
+
+        self.patcher = patch('squid_dynamodb.auth_helper.DynamoDbProxyConfig', dynamodb_proxy_config_mock, create=True)
+        self.patcher.start()
+        self.authhelper = auth_helper.DynamoDbAuthHelper()
+
+    def tearDown(self):
+        self.patcher.stop()
+
+    def test_is_valid_credentials(self):
+        BASIC_AUTH_CREDENTIALS = {"username": "testuser", "password":"testpassword"}
+        self.assertTrue(self.authhelper.is_valid_credentials(BASIC_AUTH_CREDENTIALS))
+
+    def test_is_valid_credentials_returns_false_for_none_params(self):
+        BASIC_AUTH_CREDENTIALS = {"username": None, "password":None}
+        self.assertFalse(self.authhelper.is_valid_credentials(BASIC_AUTH_CREDENTIALS))
+
+    def test_is_valid_credentials_returns_false_for_empty_param(self):
+        BASIC_AUTH_CREDENTIALS = {}
+        self.assertFalse(self.authhelper.is_valid_credentials(BASIC_AUTH_CREDENTIALS))
+
+    def test_parse_basic_auth_credentials(self):
+        RAW_STRING = "my-user pass123"
+        EXPECTED = {"username": "my-user", "password":"pass123"}
+        self.assertEqual(self.authhelper.parse_basic_auth_credentials(RAW_STRING),EXPECTED )
+
+    def test_parse_basic_auth_credentials_returns_none_for_empty_string(self):
+        RAW_STRING = ""
+        self.assertEqual(self.authhelper.parse_basic_auth_credentials(RAW_STRING),None )

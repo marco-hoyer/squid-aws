@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: squid-dynamodb
+Version: 0.1
+Summary: squid-dynamodb
+Home-page: https://vcs.rz.is/svn/prod/source/squid-dynamodb/
+Author: Marco Hoyer
+Author-email: marco.hoyer@immobilienscout24.de
+License: GNU GPL v3
+Description: Make squid a dynamic proxy by gathering auth information and acl from dynamodb
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
