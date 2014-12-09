@@ -14,7 +14,7 @@ description = """Make squid a dynamic proxy by gathering auth information and ac
 name = 'squid-aws'
 license = 'GNU GPL v3'
 summary = 'squid-aws'
-url = 'https://vcs.rz.is/svn/prod/source/squid-aws/'
+url = 'https://github.com/marco-hoyer/squid-aws
 version = '0.1'
 
 default_task = ['publish']
